@@ -2,6 +2,7 @@
 //http://www.geeksforgeeks.org/dynamic-programming-set-16-floyd-warshall-algorithm/
 
 import java.io.File;
+import java.util.Stack;
 
 import util.Reader;
 
@@ -110,15 +111,21 @@ public class MainFloyd {
 		} else{
 
 		}*/
+		Stack<Integer> st = new Stack<Integer>();
 
 		int pai = 0;
-		System.out.println(j);
+		st.add(j);
 		while(i!=j){
 			pai = pi[5][i][j];
-			System.out.println(pi[5][i][j]);
+			st.add(pi[5][i][j]);
 			j=pai;
 		}
-
+		
+		System.out.println("\nMenor caminho de "+i + " para " + j);
+		for (int k = 0; k <= st.size()+1; k++) {
+			System.out.print(st.peek());
+			st.pop();
+		}
 	}
 
 }
