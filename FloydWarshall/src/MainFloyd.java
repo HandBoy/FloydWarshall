@@ -28,6 +28,11 @@ public class MainFloyd {
 				for (int j = 0; j < matriz.length; j++) {
 					cont = Integer.min(D[k-1][i][j], D[k-1][i][x]+D[k-1][x][j]);
 					D[k][i][j] = cont;
+					if(i==j && cont < 0){
+						System.out.println("Ciclo negativo detectado do j " +j );
+						System.exit(0);
+					}
+						
 				}				
 			}
 			x++;				
@@ -57,17 +62,6 @@ public class MainFloyd {
 			}
 		}		
 
-		System.out.println("\nPi[0]");
-		for (int i = 0; i < matriz.length; i++) {
-			for (int j = 0; j < matriz.length; j++) {
-				if(pi[0][i][j] > 999)
-					System.out.printf("   NIL");
-				else
-					System.out.printf("%6d",  pi[0][i][j]);
-			}
-			System.out.print("\n");
-		}
-
 		x=0;
 		for (int k = 1; k < D.length; k++) {
 			for (int i = 0; i < matriz.length; i++) {
@@ -81,25 +75,21 @@ public class MainFloyd {
 			x++;
 		}
 
-		for (int k = 0; k < D.length; k++) {
-			System.out.println("\nPi["+k+ "]");
+			System.out.println("\nPi[5]");
 			for (int i = 0; i < matriz.length; i++) {
 				for (int j = 0; j < matriz.length; j++) {
-					if(pi[k][i][j] > 999)
+					if(pi[5][i][j] > 999)
 						System.out.printf("   NIL");
 					else
-						System.out.printf("%6d",  pi[k][i][j]);
+						System.out.printf("%6d",  pi[5][i][j]);
 				}
 				System.out.print("\n");
 			}
-			x++;
-		}
+
 
 		//*"======================= Calculando o menor caminho");
 
-		print_path(pi, 2, 3);
-
-
+		print_path(pi, 3-1, 4-1);
 	}
 
 
@@ -123,7 +113,7 @@ public class MainFloyd {
 		
 		System.out.println("\nMenor caminho de "+i + " para " + j);
 		for (int k = 0; k <= st.size()+1; k++) {
-			System.out.print(st.peek());
+			System.out.print(st.peek()+1);
 			st.pop();
 		}
 	}
